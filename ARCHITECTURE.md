@@ -12,6 +12,7 @@
 /scenarios .................. シナリオ一覧ページ
 /[platform]/[scenario] ...... SEOランディングページ（75ページ）
 /api/generate ............... AI生成APIエンドポイント
+/api/mcp .................... MCPサーバー（AIエージェント向け）
 /api/og ..................... OGP画像動的生成
 ```
 
@@ -41,6 +42,7 @@ src/
 │   │       └── page.tsx ........ SEOランディングページ（静的生成）
 │   └── api/
 │       ├── generate/route.ts ... AI生成API
+│       ├── mcp/route.ts ........ MCPサーバー
 │       └── og/route.tsx ........ OGP画像生成
 ├── components/
 │   ├── ui/ ..................... shadcn/ui コンポーネント
@@ -106,19 +108,67 @@ src/
 - Facebook: 親しみやすいトーン、中長文
 - note: 長文記事形式、見出し構成
 
-## MCP Server 設計（v2予定）
+## MCP Server 設計
 
-### エンドポイント: `/api/mcp`
+### エンドポイント: `POST /api/mcp`
+
+JSON-RPC 2.0 ベースの MCP (Model Context Protocol) サーバー。AIエージェントがプログラマティックに投稿生成機能を利用可能。
+
+#### プロトコル
+
+- **Protocol Version:** 2024-11-05
+- **Transport:** HTTP (Streamable HTTP)
+- **Format:** JSON-RPC 2.0
+
+#### 対応メソッド
+
+| メソッド | 説明 |
+|----------|------|
+| `initialize` | サーバー情報・capabilities を返す |
+| `tools/list` | 利用可能なツール一覧を返す |
+| `tools/call` | ツールを実行する |
+
+#### ツール定義
 
 | Tool名 | パラメータ | 説明 |
 |---------|-----------|------|
-| `generate_post` | platform, scenario, industry, tone, productName?, details?, targetAudience? | SNS投稿を3パターン生成 |
+| `generate_post` | platform, scenario, industry, tone?, productName?, details?, targetAudience? | SNS投稿を3パターン生成 |
 | `list_platforms` | - | 対応プラットフォーム一覧 |
 | `list_scenarios` | - | ビジネスシナリオ一覧 |
+| `list_industries` | - | 対応業種一覧 |
 
-### A2A Agent Card (`/.well-known/agent.json`)
+#### 使用例
 
-現在のv1ではREST APIとしての定義を提供。v2でMCPプロトコル対応予定。
+```json
+// リクエスト
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/call",
+  "params": {
+    "name": "generate_post",
+    "arguments": {
+      "platform": "twitter",
+      "scenario": "new-product",
+      "industry": "it",
+      "tone": "semi-casual"
+    }
+  }
+}
+```
+
+#### GET `/api/mcp`
+
+ツール一覧をシンプルなJSONで返す（ディスカバリ用）。
+
+### AI公開チャネル
+
+| ファイル | パス | 説明 |
+|----------|------|------|
+| A2A Agent Card | `/.well-known/agent.json` | AIエージェント間通信の仕様 |
+| LLMs.txt | `/llms.txt` | AI向けサイト説明 |
+| robots.txt | `/robots.txt` | AIクローラー許可設定 |
+| MCP Server | `/api/mcp` | AIエージェント直接接続エンドポイント |
 
 ## デザインシステム
 

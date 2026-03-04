@@ -59,6 +59,12 @@ SNS投稿をAIで生成。
 }
 ```
 
+### POST /api/mcp
+
+MCPサーバー（AIエージェント向け）。JSON-RPC 2.0で `tools/list`, `tools/call` に対応。
+
+ツール: `generate_post`, `list_platforms`, `list_scenarios`, `list_industries`
+
 ## 進捗
 
 - [x] プロジェクト初期化
@@ -74,7 +80,7 @@ SNS投稿をAIで生成。
 - [ ] ユーザー認証
 - [ ] 生成履歴
 - [ ] Stripe決済
-- [ ] MCPサーバー
+- [x] MCPサーバー
 
 ## デプロイ
 

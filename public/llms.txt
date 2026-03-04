@@ -1,0 +1,33 @@
+# PostPilot AI
+
+> AI-powered SNS post generator specialized for Japanese business tone.
+
+PostPilot AI generates optimized social media posts for Japanese businesses.
+Select a platform (X/Twitter, Instagram, LinkedIn, Facebook, note.com),
+business scenario, and industry - AI generates 3 professional posts instantly.
+
+## API
+
+POST /api/generate
+- Generate SNS posts with AI
+- Parameters: platform, scenario, industry, tone, productName, details, targetAudience
+- Returns: 3 optimized post patterns with character counts and hashtags
+
+## Platforms
+- twitter: X (Twitter) - 280 chars
+- instagram: Instagram - 2200 chars
+- linkedin: LinkedIn - 3000 chars
+- facebook: Facebook - 63206 chars
+- note: note - 100000 chars
+
+## Scenarios
+- new-product, campaign, recruitment, event, testimonial
+- tips, industry-news, company-intro, achievement, announcement
+- greeting, collaboration, seminar, media, daily
+
+## Industries
+- restaurant, retail, it, beauty, construction
+- medical, education, real-estate, professional, manufacturing, other
+
+## Tones
+- formal, semi-casual, casual, friendly

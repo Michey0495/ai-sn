@@ -1,0 +1,25 @@
+{
+  "name": "PostPilot AI",
+  "description": "AI-powered SNS post generator specialized for Japanese business tone. Generates optimized posts for X/Twitter, Instagram, LinkedIn, Facebook, and note.com.",
+  "url": "https://ai-sn.ezoai.jp",
+  "version": "1.0.0",
+  "capabilities": {
+    "generate_post": {
+      "description": "Generate 3 optimized SNS post patterns for a given platform, scenario, and industry",
+      "endpoint": "/api/generate",
+      "method": "POST",
+      "parameters": {
+        "platform": "twitter|instagram|linkedin|facebook|note",
+        "scenario": "new-product|campaign|recruitment|event|testimonial|tips|industry-news|company-intro|achievement|announcement|greeting|collaboration|seminar|media|daily",
+        "industry": "restaurant|retail|it|beauty|construction|medical|education|real-estate|professional|manufacturing|other",
+        "tone": "formal|semi-casual|casual|friendly",
+        "productName": "(optional) Product or service name",
+        "details": "(optional) Details to include in the post",
+        "targetAudience": "(optional) Target audience"
+      }
+    }
+  },
+  "contact": {
+    "url": "https://ai-sn.ezoai.jp"
+  }
+}

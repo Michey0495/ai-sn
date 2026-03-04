@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
-import { PLATFORMS, SCENARIOS, INDUSTRIES, TONES } from "@/lib/constants";
+import { PLATFORMS, SCENARIOS, INDUSTRIES, TONES, FREE_DAILY_LIMIT } from "@/lib/constants";
 import type { GenerateRequest, GenerateResponse, GeneratedPost } from "@/lib/types";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 const anthropic = new Anthropic();
 
@@ -46,6 +47,16 @@ JSON形式で3パターンの投稿を生成してください。各投稿はプ
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const { allowed } = checkRateLimit(ip, FREE_DAILY_LIMIT, 24 * 60 * 60 * 1000);
+
+    if (!allowed) {
+      return NextResponse.json(
+        { error: "本日の無料生成回数の上限に達しました。明日再度お試しください。" },
+        { status: 429 }
+      );
+    }
+
     const body: GenerateRequest = await request.json();
     const { platform: platformId, scenario: scenarioId, industry: industryId, tone: toneId } = body;
 

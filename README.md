@@ -76,7 +76,9 @@ MCPサーバー（AIエージェント向け）。JSON-RPC 2.0で `tools/list`, 
 - [x] サイトマップ
 - [x] OGP画像
 - [x] AI公開チャネル (llms.txt, agent.json, robots.txt)
-- [ ] レート制限
+- [x] レート制限（IP別、1日3回の無料枠）
+- [x] フィードバックウィジェット + API（GitHub Issues連携）
+- [x] Google Analytics対応（NEXT_PUBLIC_GA_ID環境変数）
 - [ ] ユーザー認証
 - [ ] 生成履歴
 - [ ] Stripe決済

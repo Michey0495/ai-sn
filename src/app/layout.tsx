@@ -18,11 +18,23 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE_NAME} - SNS投稿AI自動生成ツール`,
+    default: `${SITE_NAME} - SNS投稿AI自動生成ツール | 無料で使える`,
     template: `%s | ${SITE_NAME}`,
   },
-  description: SITE_DESCRIPTION,
+  description: `${SITE_DESCRIPTION}X、Instagram、LinkedIn、Facebook、noteに対応。15のビジネスシナリオから選ぶだけで、各SNSに最適化された投稿文を即座に生成。登録不要・無料。`,
   metadataBase: new URL(SITE_URL),
+  keywords: [
+    "SNS投稿 自動生成",
+    "SNS運用 AI",
+    "ビジネスSNS 投稿文",
+    "Twitter投稿 テンプレート",
+    "Instagram投稿 ビジネス",
+    "LinkedIn投稿 日本語",
+    "SNSマーケティング ツール",
+    "AI 投稿文 作成",
+    "企業SNS 投稿",
+    "ソーシャルメディア AI",
+  ],
   openGraph: {
     title: `${SITE_NAME} - SNS投稿AI自動生成ツール`,
     description: SITE_DESCRIPTION,
@@ -48,6 +60,16 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: SITE_URL,
   },
 };
 
@@ -74,6 +96,56 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: SITE_NAME,
+              url: SITE_URL,
+              description: SITE_DESCRIPTION,
+              applicationCategory: "BusinessApplication",
+              operatingSystem: "Web",
+              offers: [
+                {
+                  "@type": "Offer",
+                  price: "0",
+                  priceCurrency: "JPY",
+                  name: "Free",
+                  description: "1日3回まで無料",
+                },
+                {
+                  "@type": "Offer",
+                  price: "1980",
+                  priceCurrency: "JPY",
+                  name: "Pro",
+                  description: "無制限生成・全プラットフォーム対応",
+                },
+                {
+                  "@type": "Offer",
+                  price: "4980",
+                  priceCurrency: "JPY",
+                  name: "Business",
+                  description: "チーム利用・API/MCPアクセス",
+                },
+              ],
+              featureList: [
+                "X (Twitter) 投稿生成",
+                "Instagram 投稿生成",
+                "LinkedIn 投稿生成",
+                "Facebook 投稿生成",
+                "note 投稿生成",
+                "日本語ビジネストーン対応",
+                "15のビジネスシナリオ",
+                "3パターン同時生成",
+                "MCP Server対応",
+              ],
+              inLanguage: "ja",
+            }),
+          }}
+        />
         <header className="border-b border-white/10">
           <div className="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
             <Link href="/" className="text-lg font-bold text-white tracking-tight">

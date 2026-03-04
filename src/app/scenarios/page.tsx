@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PLATFORMS, SCENARIOS } from "@/lib/constants";
 import type { Metadata } from "next";
 
@@ -24,13 +25,13 @@ export default function ScenariosPage() {
             <p className="text-sm text-white/50 mb-4">{scenario.description}</p>
             <div className="flex flex-wrap gap-2">
               {PLATFORMS.map((platform) => (
-                <a
+                <Link
                   key={`${platform.id}-${scenario.id}`}
                   href={`/${platform.id}/${scenario.slug}`}
                   className="text-sm bg-white/5 border border-white/10 rounded px-3 py-1.5 text-white/70 hover:text-white hover:border-pink-accent/50 transition-all duration-200 cursor-pointer"
                 >
                   {platform.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

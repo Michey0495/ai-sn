@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PLATFORMS, SCENARIOS, SITE_NAME } from "@/lib/constants";
 
@@ -16,7 +17,7 @@ export default function Home() {
         </p>
         <div className="mt-8 flex gap-4 justify-center">
           <Button asChild size="lg" className="bg-pink-accent text-black hover:bg-pink-accent/90 font-semibold">
-            <a href="/generate">無料で投稿を作成</a>
+            <Link href="/generate">無料で投稿を作成</Link>
           </Button>
         </div>
         <p className="mt-4 text-sm text-white/40">
@@ -51,7 +52,7 @@ export default function Home() {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
           {SCENARIOS.map((s) => (
-            <a
+            <Link
               key={s.id}
               href={`/generate?scenario=${s.id}`}
               className="bg-white/5 border border-white/10 rounded-lg p-3 hover:border-pink-accent/50 transition-all duration-200 cursor-pointer"
@@ -60,7 +61,7 @@ export default function Home() {
               <p className="text-xs text-white/40 mt-1 line-clamp-2">
                 {s.description}
               </p>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
@@ -174,7 +175,7 @@ export default function Home() {
           size="lg"
           className="mt-6 bg-pink-accent text-black hover:bg-pink-accent/90 font-semibold"
         >
-          <a href="/generate">無料で投稿を作成</a>
+          <Link href="/generate">無料で投稿を作成</Link>
         </Button>
       </section>
     </div>

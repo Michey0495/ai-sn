@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import Script from "next/script";
 import "./globals.css";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
@@ -29,11 +30,20 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     locale: "ja_JP",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/api/og`,
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} - SNS投稿AI自動生成ツール`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} - SNS投稿AI自動生成ツール`,
     description: SITE_DESCRIPTION,
+    images: [`${SITE_URL}/api/og`],
   },
   robots: {
     index: true,
@@ -66,16 +76,16 @@ export default function RootLayout({
       >
         <header className="border-b border-white/10">
           <div className="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
-            <a href="/" className="text-lg font-bold text-white tracking-tight">
+            <Link href="/" className="text-lg font-bold text-white tracking-tight">
               {SITE_NAME}
-            </a>
-            <nav className="flex gap-6 text-sm text-white/60">
-              <a href="/generate" className="hover:text-white transition-colors">
+            </Link>
+            <nav aria-label="メインナビゲーション" className="flex gap-6 text-sm text-white/60">
+              <Link href="/generate" className="hover:text-white transition-colors">
                 投稿を作成
-              </a>
-              <a href="/scenarios" className="hover:text-white transition-colors">
+              </Link>
+              <Link href="/scenarios" className="hover:text-white transition-colors">
                 シナリオ一覧
-              </a>
+              </Link>
             </nav>
           </div>
         </header>

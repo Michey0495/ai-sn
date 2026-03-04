@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PLATFORMS, SCENARIOS, SITE_NAME, SITE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
@@ -95,9 +96,9 @@ export default async function PlatformScenarioPage({ params }: Props) {
         size="lg"
         className="w-full bg-pink-accent text-black hover:bg-pink-accent/90 font-semibold"
       >
-        <a href={`/generate?platform=${platform.id}&scenario=${scenario.id}`}>
+        <Link href={`/generate?platform=${platform.id}&scenario=${scenario.id}`}>
           {platform.name}の{scenario.name}投稿を作成する
-        </a>
+        </Link>
       </Button>
 
       <p className="mt-4 text-center text-sm text-white/40">

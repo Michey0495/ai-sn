@@ -74,11 +74,11 @@ export default function GeneratePage() {
       <div className="space-y-6">
         {/* Platform */}
         <div>
-          <label className="block text-sm font-medium text-white/80 mb-2">
+          <label id="platform-label" className="block text-sm font-medium text-white/80 mb-2">
             プラットフォーム
           </label>
           <Select value={platform} onValueChange={setPlatform}>
-            <SelectTrigger className="bg-white/5 border-white/10 text-white">
+            <SelectTrigger aria-labelledby="platform-label" className="bg-white/5 border-white/10 text-white">
               <SelectValue placeholder="プラットフォームを選択" />
             </SelectTrigger>
             <SelectContent className="bg-[#111] border-white/10">
@@ -93,11 +93,11 @@ export default function GeneratePage() {
 
         {/* Scenario */}
         <div>
-          <label className="block text-sm font-medium text-white/80 mb-2">
+          <label id="scenario-label" className="block text-sm font-medium text-white/80 mb-2">
             ビジネスシナリオ
           </label>
           <Select value={scenario} onValueChange={setScenario}>
-            <SelectTrigger className="bg-white/5 border-white/10 text-white">
+            <SelectTrigger aria-labelledby="scenario-label" className="bg-white/5 border-white/10 text-white">
               <SelectValue placeholder="シナリオを選択" />
             </SelectTrigger>
             <SelectContent className="bg-[#111] border-white/10">
@@ -112,11 +112,11 @@ export default function GeneratePage() {
 
         {/* Industry */}
         <div>
-          <label className="block text-sm font-medium text-white/80 mb-2">
+          <label id="industry-label" className="block text-sm font-medium text-white/80 mb-2">
             業種
           </label>
           <Select value={industry} onValueChange={setIndustry}>
-            <SelectTrigger className="bg-white/5 border-white/10 text-white">
+            <SelectTrigger aria-labelledby="industry-label" className="bg-white/5 border-white/10 text-white">
               <SelectValue placeholder="業種を選択" />
             </SelectTrigger>
             <SelectContent className="bg-[#111] border-white/10">
@@ -131,11 +131,11 @@ export default function GeneratePage() {
 
         {/* Tone */}
         <div>
-          <label className="block text-sm font-medium text-white/80 mb-2">
+          <label id="tone-label" className="block text-sm font-medium text-white/80 mb-2">
             トーン
           </label>
           <Select value={tone} onValueChange={setTone}>
-            <SelectTrigger className="bg-white/5 border-white/10 text-white">
+            <SelectTrigger aria-labelledby="tone-label" className="bg-white/5 border-white/10 text-white">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-[#111] border-white/10">
@@ -150,10 +150,11 @@ export default function GeneratePage() {
 
         {/* Optional fields */}
         <div>
-          <label className="block text-sm font-medium text-white/80 mb-2">
+          <label htmlFor="productName" className="block text-sm font-medium text-white/80 mb-2">
             商品・サービス名（任意）
           </label>
           <input
+            id="productName"
             type="text"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
@@ -163,10 +164,11 @@ export default function GeneratePage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-white/80 mb-2">
+          <label htmlFor="details" className="block text-sm font-medium text-white/80 mb-2">
             投稿の詳細・伝えたいこと（任意）
           </label>
           <Textarea
+            id="details"
             value={details}
             onChange={(e) => setDetails(e.target.value)}
             placeholder="例: 月額1,980円で無制限にSNS投稿を生成できるAIツールをリリースしました"
@@ -175,10 +177,11 @@ export default function GeneratePage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-white/80 mb-2">
+          <label htmlFor="targetAudience" className="block text-sm font-medium text-white/80 mb-2">
             ターゲット層（任意）
           </label>
           <input
+            id="targetAudience"
             type="text"
             value={targetAudience}
             onChange={(e) => setTargetAudience(e.target.value)}
@@ -188,7 +191,7 @@ export default function GeneratePage() {
         </div>
 
         {error && (
-          <p className="text-red-400 text-sm">{error}</p>
+          <p role="alert" className="text-red-400 text-sm">{error}</p>
         )}
 
         <Button
